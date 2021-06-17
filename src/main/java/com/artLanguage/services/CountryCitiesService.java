@@ -27,8 +27,12 @@ public class CountryCitiesService {
 
     public Object logicDistrictsCity(String cityName) {
         try {
-
-            return districtsRepo.findAllByNameArCities(cityName);
+            List<Districts> districtsList = districtsRepo.findAllByNameArCitiesLike(cityName);
+            if (districtsList == null || districtsList.size() == 0) {
+                String s = cityName.substring(0,cityName.length()-1);
+                return districtsRepo.findAllByNameArCitiesLike(s+"%");
+            } else
+                return districtsList;
 
         } catch (Exception e) {
             e.printStackTrace();

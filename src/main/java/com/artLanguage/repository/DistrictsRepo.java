@@ -13,6 +13,6 @@ public interface DistrictsRepo extends JpaRepository<Districts, Integer> {
     <S extends Districts> S save(S s);
 
     @Transactional
-    List<Districts> findAllByNameArCities(String name);
+    List<Districts> findAllByNameArCitiesLike(String name);
 
 }
